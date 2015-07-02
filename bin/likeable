@@ -1,0 +1,5 @@
+#!/usr/bin/env ruby
+
+require 'likeable/cli'
+
+Likeable::CLI.start(ARGV)
