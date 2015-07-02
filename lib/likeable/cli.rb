@@ -1,5 +1,6 @@
 require 'thor'
-require 'likeable/api/api_config'
+require 'likeable'
+require 'yaml'
 
 module Likeable
   class CLI < Thor
@@ -7,11 +8,12 @@ module Likeable
     class_option :access_token
 
     desc 'create_playlist', "Create a playlist made of your following's likes"
-    option :year, aliases: '-y', type: :numeric, required: true
-    option :month, aliases: '-m', type: :numeric, required: true
+    option :year, aliases: '-y', type: :numeric, required: true, desc: "Selected year for your following's likes"
+    option :month, aliases: '-m', type: :numeric, required: true, desc: "Selected month for your following's likes"
     def create_playlist
       Likeable.create_playlist(
-          Api::ApiConfig.new(options[:client_id], options[:access_token]),
+          options[:client_id],
+          options[:access_token],
           options[:year],
           options[:month])
     end

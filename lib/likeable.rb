@@ -4,9 +4,19 @@ require 'likeable/api'
 module Likeable
   extend self
 
-  def create_playlist(api_config, year, month)
-    p api_config
-    p year
-    p month
+  def create_playlist(client_id, access_token, year, month)
+    api = Api::ApiClient.new(Api::ApiConfig.new(client_id, access_token))
+    user = api.get_me
+    followings = api.get_followings(user)
+    likes = followings.flat_map { |e| api.get_likes(e) }
+    selected_likes = filter_likes(likes, year, month)
+    api.post_playlist(selected_likes.take(500).shuffle, "#{year}-#{month}")
+  end
+
+  private
+  def filter_likes(likes, year, month)
+    likes.
+        select { |track_like| track_like.created_at.year == year && track_like.created_at.month == month }.
+        uniq { |track_like| track_like.id }
   end
 end
