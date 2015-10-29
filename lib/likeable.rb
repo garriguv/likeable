@@ -1,5 +1,6 @@
 require 'likeable/version'
 require 'likeable/api'
+require 'likeable/filters'
 
 module Likeable
   extend self
@@ -15,8 +16,13 @@ module Likeable
 
   private
   def filter_likes(likes, year, month)
-    likes.
-        select { |track_like| track_like.created_at.year == year && track_like.created_at.month == month }.
-        uniq { |track_like| track_like.id }
+    filters = [
+      Filters::YearMonth.new(year, month),
+      Filters::Uniq.new
+    ]
+    filters.each { |filter|
+      likes = filter.filter_likes(likes)
+    }
+    likes
   end
 end
