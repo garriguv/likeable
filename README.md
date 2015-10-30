@@ -1,6 +1,6 @@
 # likeable
 
-`likeable` will create a playlist based on your followings likes during the specified month.
+`likeable` will create a playlist based on your followings' likes during the specified month.
 
 ## Installation
 
@@ -27,17 +27,14 @@ Usage:
 Options:
   -y, --year=N                       # Selected year for your following's likes
   -m, --month=N                      # Selected month for your following's likes
+      [--top], [--no-top]            # Order tracks by number of likes
       [--client-id=CLIENT_ID]
       [--access-token=ACCESS_TOKEN]
 
 Create a playlist made of your following's likes
 ```
 
-Copy `.likeable.yml.sample` to `.likeable.yml` and replace `CLIENT_ID` and `ACCESS_TOKEN` with your client id and access token.
-
-Then run:
-
-    $ ./likeable.rb -y YEAR -m MONTH
+If you don't want to have to pass you client id and access token all the time, copy `.likeable.yml.sample` to `.likeable.yml` and replace `CLIENT_ID` and `ACCESS_TOKEN` with your client id and access token.
 
 ## Contributing
 
