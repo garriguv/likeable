@@ -27,6 +27,7 @@ Usage:
 Options:
   -y, --year=N                       # Selected year for your following's likes
   -m, --month=N                      # Selected month for your following's likes
+  -d, --duration=N                   # Max duration in minutes of each track that should be selected
       [--top], [--no-top]            # Order tracks by number of likes
       [--client-id=CLIENT_ID]
       [--access-token=ACCESS_TOKEN]

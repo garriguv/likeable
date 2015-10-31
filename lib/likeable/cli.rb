@@ -11,13 +11,15 @@ module Likeable
     option :year, aliases: '-y', type: :numeric, required: true, desc: "Selected year for your following's likes"
     option :month, aliases: '-m', type: :numeric, required: true, desc: "Selected month for your following's likes"
     option :top, type: :boolean, desc: "Order tracks by number of likes"
+    option :duration, aliases: '-d', type: :numeric, required: false, default: 600, desc: "Max duration (in mins) of the tracks to use"
     def create_playlist
       Likeable.create_playlist(
           options[:client_id],
           options[:access_token],
           options[:year],
           options[:month],
-          options[:top])
+          options[:top],
+          options[:duration])
     end
 
     default_task :create_playlist

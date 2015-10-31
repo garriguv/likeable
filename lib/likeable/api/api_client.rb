@@ -24,7 +24,7 @@ module Likeable
         response = conn.get("/users/#{user.id}/favorites", limit: 100)
         response.body.
             select { |like| like['kind'].eql?('track') }.
-            map { |like| Models::TrackLike.new(like['id'], like['title'], Date.parse(like['created_at'])) }
+            map { |like| Models::TrackLike.new(like['id'], like['title'], Date.parse(like['created_at']), like['duration']) }
       end
 
       def post_playlist(tracks, title)
